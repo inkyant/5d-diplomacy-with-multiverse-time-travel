@@ -25,13 +25,13 @@ public class MDATC_E : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard();
 
-        var englishCentres = allRegionIds[..4].Select(r => (Nation.England, r));
-        var germanCentres = allRegionIds.Slice(4, 4).Select(r => (Nation.Germany, r));
-        var russianCentres = allRegionIds.Slice(8, 4).Select(r => (Nation.Russia, r));
-        var turkishCentres = allRegionIds.Slice(12, 4).Select(r => (Nation.Turkey, r));
-        var austrianCentres = allRegionIds.Slice(16, 4).Select(r => (Nation.Austria, r));
-        var italianCentres = allRegionIds.Slice(20, 4).Select(r => (Nation.Italy, r));
-        var frenchCentres = allRegionIds.Slice(24, 4).Select(r => (Nation.France, r));
+        var englishCentres = allRegionIds[..4].Select(r => (nation1, r));
+        var germanCentres = allRegionIds.Slice(4, 4).Select(r => (nation3, r));
+        var russianCentres = allRegionIds.Slice(8, 4).Select(r => (nation4, r));
+        var turkishCentres = allRegionIds.Slice(12, 4).Select(r => (nation5, r));
+        var austrianCentres = allRegionIds.Slice(16, 4).Select(r => (nation5, r));
+        var italianCentres = allRegionIds.Slice(20, 4).Select(r => (nation6, r));
+        var frenchCentres = allRegionIds.Slice(24, 4).Select(r => (nation2, r));
 
         board.AddCentres(
             [
@@ -58,13 +58,13 @@ public class MDATC_E : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard();
 
-        var englishCentres = allRegionIds[..18].Select(r => (Nation.England, r));
-        var germanCentres = allRegionIds.Slice(18, 2).Select(r => (Nation.Germany, r));
-        var russianCentres = allRegionIds.Slice(20, 2).Select(r => (Nation.Russia, r));
-        var turkishCentres = allRegionIds.Slice(22, 2).Select(r => (Nation.Turkey, r));
-        var austrianCentres = allRegionIds.Slice(24, 2).Select(r => (Nation.Austria, r));
-        var italianCentres = allRegionIds.Slice(26, 2).Select(r => (Nation.Italy, r));
-        var frenchCentres = allRegionIds.Slice(28, 2).Select(r => (Nation.France, r));
+        var englishCentres = allRegionIds[..18].Select(r => (nation1, r));
+        var germanCentres = allRegionIds.Slice(18, 2).Select(r => (nation3, r));
+        var russianCentres = allRegionIds.Slice(20, 2).Select(r => (nation4, r));
+        var turkishCentres = allRegionIds.Slice(22, 2).Select(r => (nation5, r));
+        var austrianCentres = allRegionIds.Slice(24, 2).Select(r => (nation5, r));
+        var italianCentres = allRegionIds.Slice(26, 2).Select(r => (nation6, r));
+        var frenchCentres = allRegionIds.Slice(28, 2).Select(r => (nation2, r));
 
         board.AddCentres(
             [
@@ -81,7 +81,7 @@ public class MDATC_E : AdjudicationTestBase
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
 
         // Assert
-        world.Winner.Should().Be(Nation.England);
+        world.Winner.Should().Be(nation1);
     }
 
     [Fact(DisplayName = "MDATC E.03. No winner if two nations on same centre count above 18 centres")]
@@ -92,8 +92,8 @@ public class MDATC_E : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var englishCentres = allRegionIds[..18].Select(r => (Nation.England, r));
-        var germanCentres = allRegionIds.Slice(16, 18).Select(r => (Nation.Germany, r));
+        var englishCentres = allRegionIds[..18].Select(r => (nation1, r));
+        var germanCentres = allRegionIds.Slice(16, 18).Select(r => (nation3, r));
 
         topBoard.AddCentres(englishCentres.ToList());
         bottomBoard.AddCentres(germanCentres.ToList());
@@ -113,8 +113,8 @@ public class MDATC_E : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var englishCentres = allRegionIds[..19].Select(r => (Nation.England, r));
-        var germanCentres = allRegionIds.Slice(16, 18).Select(r => (Nation.Germany, r));
+        var englishCentres = allRegionIds[..19].Select(r => (nation1, r));
+        var germanCentres = allRegionIds.Slice(16, 18).Select(r => (nation3, r));
 
         topBoard.AddCentres(englishCentres.ToList());
         bottomBoard.AddCentres(germanCentres.ToList());
@@ -123,7 +123,7 @@ public class MDATC_E : AdjudicationTestBase
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
 
         // Assert
-        world.Winner.Should().Be(Nation.England);
+        world.Winner.Should().Be(nation1);
     }
 
     [Fact(DisplayName = "MDATC E.05. Past boards don't count towards centre total")]
@@ -134,8 +134,8 @@ public class MDATC_E : AdjudicationTestBase
         var pastBoard = world.AddBoard();
         var presentBoard = world.AddBoard(phase: Phase.Fall);
 
-        var pastCentres = allRegionIds[..9].Select(r => (Nation.England, r));
-        var presentCentres = allRegionIds.Slice(9, 9).Select(r => (Nation.England, r));
+        var pastCentres = allRegionIds[..9].Select(r => (nation1, r));
+        var presentCentres = allRegionIds.Slice(9, 9).Select(r => (nation1, r));
 
         pastBoard.AddCentres(pastCentres.ToList());
         presentBoard.AddCentres(presentCentres.ToList());
@@ -155,8 +155,8 @@ public class MDATC_E : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var topCentres = allRegionIds[..9].Select(r => (Nation.England, r));
-        var bottomCentres = allRegionIds.Slice(6, 9).Select(r => (Nation.England, r));
+        var topCentres = allRegionIds[..9].Select(r => (nation1, r));
+        var bottomCentres = allRegionIds.Slice(6, 9).Select(r => (nation1, r));
 
         topBoard.AddCentres(topCentres.ToList());
         bottomBoard.AddCentres(bottomCentres.ToList());
@@ -177,9 +177,9 @@ public class MDATC_E : AdjudicationTestBase
         var middleBoard = world.AddBoard(timeline: 2, phase: Phase.Fall);
         var bottomBoard = world.AddBoard(timeline: 3);
 
-        var topCentres = allRegionIds[..6].Select(r => (Nation.England, r));
-        var middleCentres = allRegionIds.Slice(6, 6).Select(r => (Nation.England, r));
-        var bottomCentres = allRegionIds.Slice(12, 6).Select(r => (Nation.England, r));
+        var topCentres = allRegionIds[..6].Select(r => (nation1, r));
+        var middleCentres = allRegionIds.Slice(6, 6).Select(r => (nation1, r));
+        var bottomCentres = allRegionIds.Slice(12, 6).Select(r => (nation1, r));
 
         topBoard.AddCentres(topCentres.ToList());
         middleBoard.AddCentres(middleCentres.ToList());
@@ -189,7 +189,7 @@ public class MDATC_E : AdjudicationTestBase
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
 
         // Assert
-        world.Winner.Should().Be(Nation.England);
+        world.Winner.Should().Be(nation1);
     }
 
     [Fact(DisplayName = "MDATC E.08. No further adjudication after victory")]
@@ -198,11 +198,11 @@ public class MDATC_E : AdjudicationTestBase
         // Arrange
         var world = new World
         {
-            Winner = Nation.France
+            Winner = nation2
         };
         var board = world.AddBoard();
 
-        var units = board.AddUnits([(Nation.France, UnitType.Army, "Par")]);
+        var units = board.AddUnits([(nation2, UnitType.Army, "Par")]);
 
         var order = units.Get("Par").Move("Bur");
 
@@ -213,6 +213,6 @@ public class MDATC_E : AdjudicationTestBase
 
         // Assert
         world.Orders.Should().BeEmpty();
-        world.Winner.Should().Be(Nation.France);
+        world.Winner.Should().Be(nation2);
     }
 }

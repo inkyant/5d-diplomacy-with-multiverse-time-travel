@@ -20,11 +20,11 @@ public class DATC_J : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddCentres([(Nation.France, "Par")]);
+        board.AddCentres([(nation2, "Par")]);
         var units = board.AddUnits(
             [
-                (Nation.France, UnitType.Army, "Pic"),
-                (Nation.France, UnitType.Army, "Par"),
+                (nation2, UnitType.Army, "Pic"),
+                (nation2, UnitType.Army, "Par"),
             ]);
 
         // Trying to disband a non-existent unit will crash the program in all sorts of ugly ways, so that has been
@@ -44,13 +44,13 @@ public class DATC_J : AdjudicationTestBase
         {
             disband2.Status.Should().Be(OrderStatus.Failure);
 
-            board.Next().ShouldHaveUnits([(Nation.France, UnitType.Army, "Par", false)]);
+            board.Next().ShouldHaveUnits([(nation2, UnitType.Army, "Par", false)]);
         }
         else
         {
             disband2.Status.Should().Be(OrderStatus.Success);
 
-            board.Next().ShouldHaveUnits([(Nation.France, UnitType.Army, "Pic", false)]);
+            board.Next().ShouldHaveUnits([(nation2, UnitType.Army, "Pic", false)]);
         }
 
         world.ShouldHaveAllOrdersResolved();
@@ -65,8 +65,8 @@ public class DATC_J : AdjudicationTestBase
 
         var units = board.AddUnits(
             [
-                (Nation.France, UnitType.Army, "Par"),
-                (Nation.France, UnitType.Army, "Pic"),
+                (nation2, UnitType.Army, "Par"),
+                (nation2, UnitType.Army, "Pic"),
             ]);
 
         var disband1 = units.Get("Par", phase: Phase.Winter).Disband();

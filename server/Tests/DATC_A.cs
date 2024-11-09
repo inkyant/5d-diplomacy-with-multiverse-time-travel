@@ -19,7 +19,7 @@ public class DATC_A : AdjudicationTestBase
         // Arrange
         var world = new World();
         var board = world.AddBoard();
-        var units = board.AddUnits([(Nation.England, UnitType.Fleet, "NTH")]);
+        var units = board.AddUnits([(nation1, UnitType.Fleet, "NTH")]);
 
         var order = units.Get("NTH").Move("Pic");
 
@@ -29,7 +29,7 @@ public class DATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.England, UnitType.Fleet, "NTH", false)]);
+        board.Next().ShouldHaveUnits([(nation1, UnitType.Fleet, "NTH", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -40,7 +40,7 @@ public class DATC_A : AdjudicationTestBase
         // Arrange
         var world = new World();
         var board = world.AddBoard();
-        var units = board.AddUnits([(Nation.England, UnitType.Army, "Lvp")]);
+        var units = board.AddUnits([(nation1, UnitType.Army, "Lvp")]);
 
         var order = units.Get("Lvp").Move("IRI");
 
@@ -50,7 +50,7 @@ public class DATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.England, UnitType.Army, "Lvp", false)]);
+        board.Next().ShouldHaveUnits([(nation1, UnitType.Army, "Lvp", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -61,7 +61,7 @@ public class DATC_A : AdjudicationTestBase
         // Arrange
         var world = new World();
         var board = world.AddBoard();
-        var units = board.AddUnits([(Nation.Germany, UnitType.Fleet, "Kie")]);
+        var units = board.AddUnits([(nation3, UnitType.Fleet, "Kie")]);
 
         var order = units.Get("Kie").Move("Mun");
 
@@ -71,7 +71,7 @@ public class DATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Fleet, "Kie", false)]);
+        board.Next().ShouldHaveUnits([(nation3, UnitType.Fleet, "Kie", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -82,7 +82,7 @@ public class DATC_A : AdjudicationTestBase
         // Arrange
         var world = new World();
         var board = world.AddBoard();
-        var units = board.AddUnits([(Nation.Germany, UnitType.Fleet, "Kie")]);
+        var units = board.AddUnits([(nation3, UnitType.Fleet, "Kie")]);
 
         var order = units.Get("Kie").Move("Kie");
 
@@ -92,7 +92,7 @@ public class DATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Fleet, "Kie", false)]);
+        board.Next().ShouldHaveUnits([(nation3, UnitType.Fleet, "Kie", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -106,11 +106,11 @@ public class DATC_A : AdjudicationTestBase
 
         var units = board.AddUnits(
             [
-                (Nation.England, UnitType.Fleet, "NTH"),
-                (Nation.England, UnitType.Army, "Yor"),
-                (Nation.England, UnitType.Army, "Lvp"),
-                (Nation.Germany, UnitType.Fleet, "Lon"),
-                (Nation.Germany, UnitType.Army, "Wal"),
+                (nation1, UnitType.Fleet, "NTH"),
+                (nation1, UnitType.Army, "Yor"),
+                (nation1, UnitType.Army, "Lvp"),
+                (nation3, UnitType.Fleet, "Lon"),
+                (nation3, UnitType.Army, "Wal"),
             ]);
 
         var englishMove = units.Get("Yor").Move("Yor");
@@ -131,11 +131,11 @@ public class DATC_A : AdjudicationTestBase
 
         board.ShouldHaveUnits(
             [
-                (Nation.England, UnitType.Fleet, "NTH", false),
-                (Nation.England, UnitType.Army, "Yor", true),
-                (Nation.England, UnitType.Army, "Lvp", false),
-                (Nation.Germany, UnitType.Fleet, "Lon", false),
-                (Nation.Germany, UnitType.Army, "Wal", false),
+                (nation1, UnitType.Fleet, "NTH", false),
+                (nation1, UnitType.Army, "Yor", true),
+                (nation1, UnitType.Army, "Lvp", false),
+                (nation3, UnitType.Fleet, "Lon", false),
+                (nation3, UnitType.Army, "Wal", false),
             ]);
         board.ShouldNotHaveNextBoard();
 
@@ -158,8 +158,8 @@ public class DATC_A : AdjudicationTestBase
 
         var units = board.AddUnits(
             [
-                (Nation.England, UnitType.Fleet, "Lon"),
-                (Nation.England, UnitType.Fleet, "NTH"),
+                (nation1, UnitType.Fleet, "Lon"),
+                (nation1, UnitType.Fleet, "NTH"),
             ]);
 
         var move = units.Get("Lon").Move("Bel");
@@ -174,8 +174,8 @@ public class DATC_A : AdjudicationTestBase
 
         board.Next().ShouldHaveUnits(
             [
-                (Nation.England, UnitType.Fleet, "Lon", false),
-                (Nation.England, UnitType.Fleet, "NTH", false),
+                (nation1, UnitType.Fleet, "Lon", false),
+                (nation1, UnitType.Fleet, "NTH", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -190,9 +190,9 @@ public class DATC_A : AdjudicationTestBase
 
         var units = board.AddUnits(
             [
-                (Nation.Italy, UnitType.Army, "Ven"),
-                (Nation.Italy, UnitType.Army, "Tyr"),
-                (Nation.Austria, UnitType.Fleet, "Tri"),
+                (nation1, UnitType.Army, "Ven"),
+                (nation1, UnitType.Army, "Tyr"),
+                (nation5, UnitType.Fleet, "Tri"),
             ]);
 
         var italianMove = units.Get("Ven").Move("Tri");
@@ -209,9 +209,9 @@ public class DATC_A : AdjudicationTestBase
 
         board.ShouldHaveUnits(
             [
-                (Nation.Italy, UnitType.Army, "Ven", false),
-                (Nation.Italy, UnitType.Army, "Tyr", false),
-                (Nation.Austria, UnitType.Fleet, "Tri", true),
+                (nation1, UnitType.Army, "Ven", false),
+                (nation1, UnitType.Army, "Tyr", false),
+                (nation5, UnitType.Fleet, "Tri", true),
             ]);
         board.ShouldNotHaveNextBoard();
 
@@ -224,7 +224,7 @@ public class DATC_A : AdjudicationTestBase
         // Arrange
         var world = new World();
         var board = world.AddBoard();
-        var units = board.AddUnits([(Nation.Italy, UnitType.Fleet, "Rom")]);
+        var units = board.AddUnits([(nation1, UnitType.Fleet, "Rom")]);
 
         var order = units.Get("Rom").Move("Ven");
 
@@ -234,7 +234,7 @@ public class DATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Italy, UnitType.Fleet, "Rom", false)]);
+        board.Next().ShouldHaveUnits([(nation1, UnitType.Fleet, "Rom", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -247,9 +247,9 @@ public class DATC_A : AdjudicationTestBase
         var board = world.AddBoard();
         var units = board.AddUnits(
             [
-                (Nation.Austria, UnitType.Army, "Ven"),
-                (Nation.Italy, UnitType.Army, "Apu"),
-                (Nation.Italy, UnitType.Fleet, "Rom"),
+                (nation5, UnitType.Army, "Ven"),
+                (nation1, UnitType.Army, "Apu"),
+                (nation1, UnitType.Fleet, "Rom"),
             ]);
 
         var austrianHold = units.Get("Ven").Hold();
@@ -266,9 +266,9 @@ public class DATC_A : AdjudicationTestBase
 
         board.Next().ShouldHaveUnits(
             [
-                (Nation.Austria, UnitType.Army, "Ven", false),
-                (Nation.Italy, UnitType.Army, "Apu", false),
-                (Nation.Italy, UnitType.Fleet, "Rom", false),
+                (nation5, UnitType.Army, "Ven", false),
+                (nation1, UnitType.Army, "Apu", false),
+                (nation1, UnitType.Fleet, "Rom", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -282,8 +282,8 @@ public class DATC_A : AdjudicationTestBase
         var board = world.AddBoard();
         var units = board.AddUnits(
             [
-                (Nation.Austria, UnitType.Army, "Vie"),
-                (Nation.Italy, UnitType.Army, "Ven"),
+                (nation5, UnitType.Army, "Vie"),
+                (nation1, UnitType.Army, "Ven"),
             ]);
 
         var austrianMove = units.Get("Vie").Move("Tyr");
@@ -298,8 +298,8 @@ public class DATC_A : AdjudicationTestBase
 
         board.Next().ShouldHaveUnits(
             [
-                (Nation.Austria, UnitType.Army, "Vie", false),
-                (Nation.Italy, UnitType.Army, "Ven", false),
+                (nation5, UnitType.Army, "Vie", false),
+                (nation1, UnitType.Army, "Ven", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -313,9 +313,9 @@ public class DATC_A : AdjudicationTestBase
         var board = world.AddBoard();
         var units = board.AddUnits(
             [
-                (Nation.Austria, UnitType.Army, "Vie"),
-                (Nation.Germany, UnitType.Army, "Mun"),
-                (Nation.Italy, UnitType.Army, "Ven"),
+                (nation5, UnitType.Army, "Vie"),
+                (nation3, UnitType.Army, "Mun"),
+                (nation1, UnitType.Army, "Ven"),
             ]);
 
         var austrianMove = units.Get("Vie").Move("Tyr");
@@ -332,9 +332,9 @@ public class DATC_A : AdjudicationTestBase
 
         board.Next().ShouldHaveUnits(
             [
-                (Nation.Austria, UnitType.Army, "Vie", false),
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Italy, UnitType.Army, "Ven", false),
+                (nation5, UnitType.Army, "Vie", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation1, UnitType.Army, "Ven", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();

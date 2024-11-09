@@ -22,7 +22,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = topBoard.AddUnits([(Nation.England, UnitType.Army, "Lon")]);
+        var units = topBoard.AddUnits([(nation1, UnitType.Army, "Lon")]);
 
         var order = units.Get("Lon").Move("Lon", timeline: 2);
 
@@ -33,7 +33,7 @@ public class MDATC_A : AdjudicationTestBase
         order.Status.Should().Be(OrderStatus.Success);
 
         topBoard.Next().ShouldHaveUnits([]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.England, UnitType.Army, "Lon", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation1, UnitType.Army, "Lon", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -47,7 +47,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = topBoard.AddUnits([(Nation.Turkey, UnitType.Fleet, "Smy")]);
+        var units = topBoard.AddUnits([(nation5, UnitType.Fleet, "Smy")]);
 
         var order = units.Get("Smy").Move("Smy", timeline: 2);
 
@@ -58,7 +58,7 @@ public class MDATC_A : AdjudicationTestBase
         order.Status.Should().Be(OrderStatus.Success);
 
         topBoard.Next().ShouldHaveUnits([]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.Turkey, UnitType.Fleet, "Smy", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation5, UnitType.Fleet, "Smy", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -72,7 +72,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = bottomBoard.AddUnits([(Nation.Austria, UnitType.Army, "Vie")]);
+        var units = bottomBoard.AddUnits([(nation5, UnitType.Army, "Vie")]);
 
         var order = units.Get("Vie", timeline: 2).Move("Bud");
 
@@ -82,7 +82,7 @@ public class MDATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Success);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.Austria, UnitType.Army, "Bud", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation5, UnitType.Army, "Bud", false)]);
         bottomBoard.Next().ShouldHaveUnits([]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -97,7 +97,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = bottomBoard.AddUnits([(Nation.Italy, UnitType.Fleet, "Tun")]);
+        var units = bottomBoard.AddUnits([(nation1, UnitType.Fleet, "Tun")]);
 
         var order = units.Get("Tun", timeline: 2).Move("WES");
 
@@ -108,7 +108,7 @@ public class MDATC_A : AdjudicationTestBase
         order.Status.Should().Be(OrderStatus.Invalid);
 
         topBoard.Next().ShouldHaveUnits([]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.Italy, UnitType.Fleet, "Tun", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation1, UnitType.Fleet, "Tun", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -122,7 +122,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = topBoard.AddUnits([(Nation.England, UnitType.Fleet, "Lvp")]);
+        var units = topBoard.AddUnits([(nation1, UnitType.Fleet, "Lvp")]);
 
         var order = units.Get("Lvp").Move("Edi", timeline: 2);
 
@@ -132,7 +132,7 @@ public class MDATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.England, UnitType.Fleet, "Lvp", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation1, UnitType.Fleet, "Lvp", false)]);
         bottomBoard.Next().ShouldHaveUnits([]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -147,7 +147,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard();
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = bottomBoard.AddUnits([(Nation.France, UnitType.Fleet, "Spa_S")]);
+        var units = bottomBoard.AddUnits([(nation2, UnitType.Fleet, "Spa_S")]);
 
         var order = units.Get("Spa_S", timeline: 2).Move("Spa_N");
 
@@ -158,7 +158,7 @@ public class MDATC_A : AdjudicationTestBase
         order.Status.Should().Be(OrderStatus.Invalid);
 
         topBoard.Next().ShouldHaveUnits([]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.France, UnitType.Fleet, "Spa_S", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation2, UnitType.Fleet, "Spa_S", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -172,7 +172,7 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard(phase: Phase.Fall);
         var bottomBoard = world.AddBoard(timeline: 2);
 
-        var units = topBoard.AddUnits([(Nation.Germany, UnitType.Army, "Mun")]);
+        var units = topBoard.AddUnits([(nation3, UnitType.Army, "Mun")]);
 
         var order = units.Get("Mun", phase: Phase.Fall).Move("Mun", timeline: 2);
 
@@ -182,7 +182,7 @@ public class MDATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Army, "Mun", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation3, UnitType.Army, "Mun", false)]);
         bottomBoard.Next().ShouldHaveUnits([]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -198,7 +198,7 @@ public class MDATC_A : AdjudicationTestBase
         var middleBoard = world.AddBoard(timeline: 2);
         var bottomBoard = world.AddBoard(timeline: 3);
 
-        var units = topBoard.AddUnits([(Nation.England, UnitType.Army, "Lon")]);
+        var units = topBoard.AddUnits([(nation1, UnitType.Army, "Lon")]);
 
         var order = units.Get("Lon").Move("Lon", timeline: 3);
 
@@ -208,7 +208,7 @@ public class MDATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.England, UnitType.Army, "Lon", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation1, UnitType.Army, "Lon", false)]);
         middleBoard.Next().ShouldHaveUnits([]);
         bottomBoard.Next().ShouldHaveUnits([]);
 
@@ -228,8 +228,8 @@ public class MDATC_A : AdjudicationTestBase
 
         var units = presentBoard.AddUnits(
             [
-                (Nation.England, UnitType.Army, "Lon"),
-                (Nation.France, UnitType.Army, "Par"),
+                (nation1, UnitType.Army, "Lon"),
+                (nation2, UnitType.Army, "Par"),
             ]);
 
         var englishMove = units.Get("Lon", year: 1902).Move("Lon");
@@ -242,9 +242,9 @@ public class MDATC_A : AdjudicationTestBase
         englishMove.Status.Should().Be(OrderStatus.Invalid);
         frenchMove.Status.Should().Be(OrderStatus.Success);
 
-        presentBoard.Next().ShouldHaveUnits([(Nation.England, UnitType.Army, "Lon", false)]);
+        presentBoard.Next().ShouldHaveUnits([(nation1, UnitType.Army, "Lon", false)]);
         pastBoard1.ShouldNotHaveNextBoard(timeline: 2);
-        pastBoard2.Next(timeline: 2).ShouldHaveUnits([(Nation.France, UnitType.Army, "Gas", false)]);
+        pastBoard2.Next(timeline: 2).ShouldHaveUnits([(nation2, UnitType.Army, "Gas", false)]);
         pastBoard3.ShouldNotHaveNextBoard(timeline: 2);
 
         world.ShouldHaveAllOrdersResolved();
@@ -259,13 +259,13 @@ public class MDATC_A : AdjudicationTestBase
         var presentBoard = world.AddBoard(year: 1902);
         var pastBoard = world.AddBoard(phase: Phase.Winter);
 
-        presentBoard.AddCentres([(Nation.Russia, "Sev")]);
-        pastBoard.AddCentres([(Nation.Russia, "Sev")]);
+        presentBoard.AddCentres([(nation4, "Sev")]);
+        pastBoard.AddCentres([(nation4, "Sev")]);
 
         List<Unit> units =
             [
-                .. pastBoard.AddUnits([(Nation.Russia, UnitType.Fleet, "Sev")]),
-                .. presentBoard.AddUnits([(Nation.Russia, UnitType.Fleet, "Sev")]
+                .. pastBoard.AddUnits([(nation4, UnitType.Fleet, "Sev")]),
+                .. presentBoard.AddUnits([(nation4, UnitType.Fleet, "Sev")]
             )];
 
         var order = units.Get("Sev", year: 1902).Move("Sev", phase: Phase.Winter);
@@ -276,7 +276,7 @@ public class MDATC_A : AdjudicationTestBase
         // Assert
         order.Status.Should().Be(OrderStatus.Invalid);
 
-        presentBoard.Next().ShouldHaveUnits([(Nation.Russia, UnitType.Fleet, "Sev", false)]);
+        presentBoard.Next().ShouldHaveUnits([(nation4, UnitType.Fleet, "Sev", false)]);
         pastBoard.ShouldNotHaveNextBoard(timeline: 2);
 
         world.ShouldHaveAllOrdersResolved();
@@ -291,12 +291,12 @@ public class MDATC_A : AdjudicationTestBase
         var topBoard = world.AddBoard(year: 1902);
         var bottomBoard = world.AddBoard(timeline: 2, phase: Phase.Winter);
 
-        bottomBoard.AddCentres([(Nation.Germany, "Ber")]);
+        bottomBoard.AddCentres([(nation3, "Ber")]);
 
-        var units = topBoard.AddUnits([(Nation.England, UnitType.Fleet, "Edi")]);
+        var units = topBoard.AddUnits([(nation1, UnitType.Fleet, "Edi")]);
 
         var englishMove = units.Get("Edi", year: 1902).Move("Cly", year: 1902);
-        var germanBuild = bottomBoard.Build(Nation.Germany, UnitType.Army, "Ber");
+        var germanBuild = bottomBoard.Build(nation3, UnitType.Army, "Ber");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -305,8 +305,8 @@ public class MDATC_A : AdjudicationTestBase
         englishMove.Status.Should().Be(OrderStatus.Success);
         germanBuild.Status.Should().Be(OrderStatus.Success);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.England, UnitType.Fleet, "Cly", false)]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Army, "Ber", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation1, UnitType.Fleet, "Cly", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation3, UnitType.Army, "Ber", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }

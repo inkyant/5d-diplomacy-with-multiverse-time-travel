@@ -20,17 +20,17 @@ public class DATC_I : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddUnits([(Nation.Germany, UnitType.Army, "Sil")]);
+        board.AddUnits([(nation3, UnitType.Army, "Sil")]);
         board.AddCentres(
             [
-                (Nation.Russia, "War"),
-                (Nation.Germany, "Kie"),
-                (Nation.Germany, "Mun"),
+                (nation4, "War"),
+                (nation3, "Kie"),
+                (nation3, "Mun"),
             ]);
 
-        var build1 = board.Build(Nation.Germany, UnitType.Army, "War");
-        var build2 = board.Build(Nation.Germany, UnitType.Army, "Kie");
-        var build3 = board.Build(Nation.Germany, UnitType.Army, "Mun");
+        var build1 = board.Build(nation3, UnitType.Army, "War");
+        var build2 = board.Build(nation3, UnitType.Army, "Kie");
+        var build3 = board.Build(nation3, UnitType.Army, "Mun");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -46,8 +46,8 @@ public class DATC_I : AdjudicationTestBase
 
             board.Next().ShouldHaveUnits(
                 [
-                    (Nation.Germany, UnitType.Army, "Sil", false),
-                    (Nation.Germany, UnitType.Army, "Kie", false),
+                    (nation3, UnitType.Army, "Sil", false),
+                    (nation3, UnitType.Army, "Kie", false),
                 ]);
         }
         else
@@ -56,8 +56,8 @@ public class DATC_I : AdjudicationTestBase
 
             board.Next().ShouldHaveUnits(
                 [
-                    (Nation.Germany, UnitType.Army, "Sil", false),
-                    (Nation.Germany, UnitType.Army, "Mun", false),
+                    (nation3, UnitType.Army, "Sil", false),
+                    (nation3, UnitType.Army, "Mun", false),
                 ]);
         }
 
@@ -71,9 +71,9 @@ public class DATC_I : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddCentres([(Nation.Russia, "Mos")]);
+        board.AddCentres([(nation4, "Mos")]);
 
-        var build = board.Build(Nation.Russia, UnitType.Fleet, "Mos");
+        var build = board.Build(nation4, UnitType.Fleet, "Mos");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -93,14 +93,14 @@ public class DATC_I : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddUnits([(Nation.Germany, UnitType.Army, "Ber")]);
+        board.AddUnits([(nation3, UnitType.Army, "Ber")]);
         board.AddCentres(
             [
-                (Nation.Germany, "Ber"),
-                (Nation.Germany, "Mun"),
+                (nation3, "Ber"),
+                (nation3, "Mun"),
             ]);
 
-        var build = board.Build(Nation.Germany, UnitType.Army, "Ber");
+        var build = board.Build(nation3, UnitType.Army, "Ber");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -108,7 +108,7 @@ public class DATC_I : AdjudicationTestBase
         // Assert
         build.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Army, "Ber", false)]);
+        board.Next().ShouldHaveUnits([(nation3, UnitType.Army, "Ber", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -120,14 +120,14 @@ public class DATC_I : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddUnits([(Nation.Russia, UnitType.Fleet, "Stp_S")]);
+        board.AddUnits([(nation4, UnitType.Fleet, "Stp_S")]);
         board.AddCentres(
             [
-                (Nation.Russia, "Stp"),
-                (Nation.Russia, "Mos"),
+                (nation4, "Stp"),
+                (nation4, "Mos"),
             ]);
 
-        var build = board.Build(Nation.Russia, UnitType.Fleet, "Stp_N");
+        var build = board.Build(nation4, UnitType.Fleet, "Stp_N");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -135,7 +135,7 @@ public class DATC_I : AdjudicationTestBase
         // Assert
         build.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Russia, UnitType.Fleet, "Stp_S", false)]);
+        board.Next().ShouldHaveUnits([(nation4, UnitType.Fleet, "Stp_S", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }
@@ -149,11 +149,11 @@ public class DATC_I : AdjudicationTestBase
 
         board.AddCentres(
             [
-                (Nation.Russia, "Ber"),
-                (Nation.Germany, "Mun"),
+                (nation4, "Ber"),
+                (nation3, "Mun"),
             ]);
 
-        var build = board.Build(Nation.Germany, UnitType.Army, "Ber");
+        var build = board.Build(nation3, UnitType.Army, "Ber");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -173,9 +173,9 @@ public class DATC_I : AdjudicationTestBase
         var world = new World();
         var board = world.AddBoard(phase: Phase.Winter);
 
-        board.AddCentres([(Nation.Germany, "War")]);
+        board.AddCentres([(nation3, "War")]);
 
-        var build = board.Build(Nation.Germany, UnitType.Army, "War");
+        var build = board.Build(nation3, UnitType.Army, "War");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -197,12 +197,12 @@ public class DATC_I : AdjudicationTestBase
 
         board.AddCentres(
             [
-                (Nation.Russia, "Mos"),
-                (Nation.Russia, "Sev"),
+                (nation4, "Mos"),
+                (nation4, "Sev"),
             ]);
 
-        var build1 = board.Build(Nation.Russia, UnitType.Army, "Mos");
-        var build2 = board.Build(Nation.Russia, UnitType.Army, "Mos");
+        var build1 = board.Build(nation4, UnitType.Army, "Mos");
+        var build2 = board.Build(nation4, UnitType.Army, "Mos");
 
         // Act
         new Adjudicator(world, false, MapFactory, DefaultWorldFactory).Adjudicate();
@@ -211,7 +211,7 @@ public class DATC_I : AdjudicationTestBase
         build1.Status.Should().Be(OrderStatus.Success);
         build2.Status.Should().Be(OrderStatus.Invalid);
 
-        board.Next().ShouldHaveUnits([(Nation.Russia, UnitType.Army, "Mos", false)]);
+        board.Next().ShouldHaveUnits([(nation4, UnitType.Army, "Mos", false)]);
 
         world.ShouldHaveAllOrdersResolved();
     }

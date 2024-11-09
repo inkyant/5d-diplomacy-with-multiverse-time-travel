@@ -24,8 +24,8 @@ public class MDATC_B : AdjudicationTestBase
 
         List<Unit> units =
             [
-                .. pastBoard.AddUnits([(Nation.Germany, UnitType.Army, "Mun")]),
-                .. presentBoard.AddUnits([(Nation.Germany, UnitType.Army, "Mun")]),
+                .. pastBoard.AddUnits([(nation3, UnitType.Army, "Mun")]),
+                .. presentBoard.AddUnits([(nation3, UnitType.Army, "Mun")]),
             ];
 
         units.Get("Mun").Hold(status: OrderStatus.Success);
@@ -41,8 +41,8 @@ public class MDATC_B : AdjudicationTestBase
         presentBoard.Next().ShouldHaveUnits([]);
         pastBoard.Next(timeline: 2).ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Germany, UnitType.Army, "Tyr", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation3, UnitType.Army, "Tyr", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -61,13 +61,13 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
             ];
 
@@ -86,13 +86,13 @@ public class MDATC_B : AdjudicationTestBase
 
         presentBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Boh", false),
             ]);
         pastBoard.Next(timeline: 2).ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Tyr", false),
-                (Nation.Austria, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Tyr", false),
+                (nation5, UnitType.Army, "Boh", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -111,13 +111,13 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Tyr"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Tyr"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Tyr"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Tyr"),
                     ]),
             ];
 
@@ -136,13 +136,13 @@ public class MDATC_B : AdjudicationTestBase
 
         presentBoard.ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Tyr", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Tyr", false),
             ]);
         pastBoard.ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Tyr", true),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Tyr", true),
             ]);
         presentBoard.ShouldNotHaveNextBoard();
         pastBoard.ShouldNotHaveNextBoard(timeline: 2);
@@ -163,13 +163,13 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Tyr"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Tyr"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Tyr"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Tyr"),
                     ]),
             ];
 
@@ -188,8 +188,8 @@ public class MDATC_B : AdjudicationTestBase
 
         presentBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Tyr", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Tyr", false),
             ]);
         pastBoard.ShouldNotHaveNextBoard(timeline: 2);
 
@@ -209,13 +209,13 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Germany, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation3, UnitType.Army, "Boh"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Tyr"),
-                        (Nation.Germany, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Tyr"),
+                        (nation3, UnitType.Army, "Boh"),
                     ]),
             ];
 
@@ -234,8 +234,8 @@ public class MDATC_B : AdjudicationTestBase
 
         presentBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Tyr", false),
-                (Nation.Germany, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Tyr", false),
+                (nation3, UnitType.Army, "Boh", false),
             ]);
         pastBoard.ShouldNotHaveNextBoard(timeline: 2);
 
@@ -253,8 +253,8 @@ public class MDATC_B : AdjudicationTestBase
 
         List<Unit> units =
             [
-                .. topBoard.AddUnits([(Nation.Germany, UnitType.Army, "Mun")]),
-                .. bottomBoard.AddUnits([(Nation.Germany, UnitType.Army, "Mun")]),
+                .. topBoard.AddUnits([(nation3, UnitType.Army, "Mun")]),
+                .. bottomBoard.AddUnits([(nation3, UnitType.Army, "Mun")]),
             ];
 
         var move = units.Get("Mun", timeline: 2).Move("Tyr", timeline: 2);
@@ -267,8 +267,8 @@ public class MDATC_B : AdjudicationTestBase
         move.Status.Should().Be(OrderStatus.Success);
         support.Status.Should().Be(OrderStatus.Success);
 
-        topBoard.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Army, "Mun", false)]);
-        bottomBoard.Next().ShouldHaveUnits([(Nation.Germany, UnitType.Army, "Tyr", false)]);
+        topBoard.Next().ShouldHaveUnits([(nation3, UnitType.Army, "Mun", false)]);
+        bottomBoard.Next().ShouldHaveUnits([(nation3, UnitType.Army, "Tyr", false)]);
         topBoard.ShouldNotHaveNextBoard(timeline: 3);
         bottomBoard.ShouldNotHaveNextBoard(timeline: 3);
 
@@ -290,23 +290,23 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. presentTopBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
                 .. presentBottomBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Tyr"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Tyr"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
                 .. pastTopBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
                 .. pastBottomBoard.AddUnits(
                     [
-                        (Nation.Germany, UnitType.Army, "Mun"),
-                        (Nation.Austria, UnitType.Army, "Boh"),
+                        (nation3, UnitType.Army, "Mun"),
+                        (nation5, UnitType.Army, "Boh"),
                     ]),
             ];
 
@@ -325,18 +325,18 @@ public class MDATC_B : AdjudicationTestBase
 
         presentTopBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Boh", false),
             ]);
         presentBottomBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Tyr", false),
-                (Nation.Austria, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Tyr", false),
+                (nation5, UnitType.Army, "Boh", false),
             ]);
         pastBottomBoard.Next(timeline: 3).ShouldHaveUnits(
             [
-                (Nation.Germany, UnitType.Army, "Mun", false),
-                (Nation.Austria, UnitType.Army, "Boh", false),
+                (nation3, UnitType.Army, "Mun", false),
+                (nation5, UnitType.Army, "Boh", false),
             ]);
 
         world.ShouldHaveAllOrdersResolved();
@@ -355,23 +355,23 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.England, UnitType.Fleet, "Lon"),
-                        (Nation.Germany, UnitType.Army, "Ber"),
-                        (Nation.Russia, UnitType.Army, "Mos"),
-                        (Nation.Turkey, UnitType.Army, "Con"),
-                        (Nation.Austria, UnitType.Army, "Vie"),
-                        (Nation.Italy, UnitType.Fleet, "Rom"),
-                        (Nation.France, UnitType.Army, "Par"),
+                        (nation1, UnitType.Fleet, "Lon"),
+                        (nation2, UnitType.Army, "Ber"),
+                        (nation3, UnitType.Army, "Mos"),
+                        (nation4, UnitType.Army, "Con"),
+                        (nation5, UnitType.Army, "Vie"),
+                        (nation6, UnitType.Fleet, "Rom"),
+                        (nation7, UnitType.Army, "Par"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.England, UnitType.Fleet, "Lon"),
-                        (Nation.Germany, UnitType.Army, "Ber"),
-                        (Nation.Russia, UnitType.Army, "Mos"),
-                        (Nation.Turkey, UnitType.Army, "Con"),
-                        (Nation.Austria, UnitType.Army, "Vie"),
-                        (Nation.Italy, UnitType.Fleet, "Rom"),
-                        (Nation.France, UnitType.Army, "Par"),
+                        (nation1, UnitType.Fleet, "Lon"),
+                        (nation2, UnitType.Army, "Ber"),
+                        (nation3, UnitType.Army, "Mos"),
+                        (nation4, UnitType.Army, "Con"),
+                        (nation5, UnitType.Army, "Vie"),
+                        (nation6, UnitType.Fleet, "Rom"),
+                        (nation7, UnitType.Army, "Par"),
                     ]),
             ];
 
@@ -406,20 +406,20 @@ public class MDATC_B : AdjudicationTestBase
         presentBoard.Next().ShouldHaveUnits([]);
         pastBoard.Next(timeline: 2).ShouldHaveUnits(
             [
-                (Nation.England, UnitType.Fleet, "Lon", false),
-                (Nation.England, UnitType.Fleet, "Wal", false),
-                (Nation.Germany, UnitType.Army, "Ber", false),
-                (Nation.Germany, UnitType.Army, "Kie", false),
-                (Nation.Russia, UnitType.Army, "Mos", false),
-                (Nation.Russia, UnitType.Army, "Stp", false),
-                (Nation.Turkey, UnitType.Army, "Con", false),
-                (Nation.Turkey, UnitType.Army, "Bul", false),
-                (Nation.Austria, UnitType.Army, "Vie", false),
-                (Nation.Austria, UnitType.Army, "Bud", false),
-                (Nation.Italy, UnitType.Fleet, "Rom", false),
-                (Nation.Italy, UnitType.Fleet, "Tus", false),
-                (Nation.France, UnitType.Army, "Par", false),
-                (Nation.France, UnitType.Army, "Pic", false),
+                (nation1, UnitType.Fleet, "Lon", false),
+                (nation1, UnitType.Fleet, "Wal", false),
+                (nation2, UnitType.Army, "Ber", false),
+                (nation2, UnitType.Army, "Kie", false),
+                (nation3, UnitType.Army, "Mos", false),
+                (nation3, UnitType.Army, "Stp", false),
+                (nation4, UnitType.Army, "Con", false),
+                (nation4, UnitType.Army, "Bul", false),
+                (nation5, UnitType.Army, "Vie", false),
+                (nation5, UnitType.Army, "Bud", false),
+                (nation6, UnitType.Fleet, "Rom", false),
+                (nation6, UnitType.Fleet, "Tus", false),
+                (nation7, UnitType.Army, "Par", false),
+                (nation7, UnitType.Army, "Pic", false),
             ]);
         pastBoard.ShouldNotHaveNextBoard(timeline: 3);
 
@@ -439,13 +439,13 @@ public class MDATC_B : AdjudicationTestBase
             [
                 .. pastBoard.AddUnits(
                     [
-                        (Nation.Russia, UnitType.Army, "Mos"),
-                        (Nation.Russia, UnitType.Army, "War"),
+                        (nation4, UnitType.Army, "Mos"),
+                        (nation4, UnitType.Army, "War"),
                     ]),
                 .. presentBoard.AddUnits(
                     [
-                        (Nation.Russia, UnitType.Army, "Mos"),
-                        (Nation.Russia, UnitType.Army, "War"),
+                        (nation4, UnitType.Army, "Mos"),
+                        (nation4, UnitType.Army, "War"),
                     ]),
             ];
 
@@ -464,8 +464,8 @@ public class MDATC_B : AdjudicationTestBase
 
         presentBoard.Next().ShouldHaveUnits(
             [
-                (Nation.Russia, UnitType.Army, "Mos", false),
-                (Nation.Russia, UnitType.Army, "War", false),
+                (nation4, UnitType.Army, "Mos", false),
+                (nation4, UnitType.Army, "War", false),
             ]);
         pastBoard.ShouldNotHaveNextBoard(timeline: 2);
 
@@ -487,7 +487,7 @@ public class MDATC_B : AdjudicationTestBase
         var presentBoard = world.AddBoard(phase: Phase.Fall);
         var pastBoard = world.AddBoard();
 
-        var units = presentBoard.AddUnits([(Nation.France, UnitType.Army, "Bel")]);
+        var units = presentBoard.AddUnits([(nation2, UnitType.Army, "Bel")]);
 
         var move = units.Get("Bel", phase: Phase.Fall).Move("Bel");
 
