@@ -22,8 +22,7 @@ const BuildOptions = ({ location, owner, scaleFactor }: BuildOptionsProps) => {
   if (
     !owner ||
     currentOrder?.$type !== OrderType.Build ||
-    !compareLocations(currentOrder?.location, location) ||
-    owner !== regions[location.region].homeNation
+    !compareLocations(currentOrder?.location, location) 
   ) {
     return null;
   }

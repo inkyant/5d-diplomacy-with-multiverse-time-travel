@@ -1,126 +1,138 @@
 [
   {
     "location": { "regionId": "Ank" },
-    "owner": "Turkey"
+    "owner": "Ankara"
   },
   {
-    "location": { "regionId": "Bel" }
+    "location": { "regionId": "Bel" },
+    "owner": "Belgium"
   },
   {
     "location": { "regionId": "Ber" },
-    "owner": "Germany"
+    "owner": "Berlin"
   },
   {
     "location": { "regionId": "Bre" },
-    "owner": "France"
+    "owner": "Brest"
   },
   {
     "location": { "regionId": "Bud" },
-    "owner": "Austria"
+    "owner": "Budapest"
   },
   {
-    "location": { "regionId": "Bul" }
+    "location": { "regionId": "Bul" },
+    "owner": "Bulgaria"
   },
   {
     "location": { "regionId": "Con" },
-    "owner": "Turkey"
+    "owner": "Constantinople"
   },
   {
-    "location": { "regionId": "Den" }
+    "location": { "regionId": "Den" },
+    "owner": "Denmark"
   },
   {
     "location": { "regionId": "Edi" },
-    "owner": "England"
+    "owner": "Edinburgh"
   },
   {
-    "location": { "regionId": "Gre" }
+    "location": { "regionId": "Gre" },
+    "owner": "Greece"
   },
   {
-    "location": { "regionId": "Hol" }
+    "location": { "regionId": "Hol" },
+    "owner": "Holland"
   },
   {
     "location": { "regionId": "Kie" },
-    "owner": "Germany"
+    "owner": "Kiel"
   },
   {
     "location": { "regionId": "Lon" },
-    "owner": "England"
+    "owner": "London"
   },
   {
     "location": { "regionId": "Lvp" },
-    "owner": "England"
+    "owner": "Liverpool"
   },
   {
     "location": { "regionId": "Mar" },
-    "owner": "France"
+    "owner": "Marseille"
   },
   {
     "location": { "regionId": "Mos" },
-    "owner": "Russia"
+    "owner": "Moscow"
   },
   {
     "location": { "regionId": "Mun" },
-    "owner": "Germany"
+    "owner": "Munich"
   },
   {
     "location": { "regionId": "Nap" },
-    "owner": "Italy"
+    "owner": "Naples"
   },
   {
-    "location": { "regionId": "Nwy" }
+    "location": { "regionId": "Nwy" },
+    "owner": "Norway"
   },
   {
     "location": { "regionId": "Par" },
-    "owner": "France"
+    "owner": "Paris"
   },
   {
-    "location": { "regionId": "Por" }
+    "location": { "regionId": "Por" },
+    "owner": "Portugal"
   },
   {
     "location": { "regionId": "Rom" },
-    "owner": "Italy"
+    "owner": "Rome"
   },
   {
-    "location": { "regionId": "Rum" }
+    "location": { "regionId": "Rum" },
+    "owner": "Rumania"
   },
   {
-    "location": { "regionId": "Ser" }
+    "location": { "regionId": "Ser" },
+    "owner": "Serbia"
   },
   {
     "location": { "regionId": "Sev" },
-    "owner": "Russia"
+    "owner": "Sevastopol"
   },
   {
     "location": { "regionId": "Smy" },
-    "owner": "Turkey"
+    "owner": "Smyrna"
   },
   {
-    "location": { "regionId": "Spa" }
+    "location": { "regionId": "Spa" },
+    "owner": "Spain"
   },
   {
     "location": { "regionId": "Stp" },
-    "owner": "Russia"
+    "owner": "StPetersburg"
   },
   {
-    "location": { "regionId": "Swe" }
+    "location": { "regionId": "Swe" },
+    "owner": "Sweden"
   },
   {
     "location": { "regionId": "Tri" },
-    "owner": "Austria"
+    "owner": "Trieste"
   },
   {
-    "location": { "regionId": "Tun" }
+    "location": { "regionId": "Tun" },
+    "owner": "Tunis"
   },
   {
     "location": { "regionId": "Ven" },
-    "owner": "Italy"
+    "owner": "Venice"
   },
   {
     "location": { "regionId": "Vie" },
-    "owner": "Austria"
+    "owner": "Vienna"
   },
   {
     "location": { "regionId": "War" },
-    "owner": "Russia"
+    "owner": "Warsaw"
   }
 ]

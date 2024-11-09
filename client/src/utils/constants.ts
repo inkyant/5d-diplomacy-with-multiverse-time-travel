@@ -1,6 +1,6 @@
 // Gameplay
 
-export const startYear = 1901;
+export const startYear = 1900;
 export const victoryRequiredCentreCount = 18;
 
 // UI

@@ -33,7 +33,7 @@ const handleAdjustmentOrderCreation = (
     (currentMode === InputMode.Build || (!unit && currentMode === InputMode.None)) &&
     !currentOrder
   ) {
-    if (!isPlayerNation) return state;
+
 
     return {
       ...state,
@@ -54,7 +54,7 @@ const handleAdjustmentOrderCreation = (
     currentOrder?.$type === OrderType.Build &&
     compareLocations(currentOrder.location, location)
   ) {
-    if (!isPlayerNation || !unit) return state;
+    if (!unit) return state;
 
     return {
       ...state,
@@ -67,7 +67,7 @@ const handleAdjustmentOrderCreation = (
               ? { ...currentOrder.location, region: currentOrder.location.region.split('_')[0] }
               : currentOrder.location,
           unit: {
-            owner: nation,
+            owner: unit.owner,
             type: unit.type,
             mustRetreat: false,
           },

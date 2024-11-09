@@ -62,6 +62,7 @@ dotnet_diagnostic.IDE0043.severity = error
 dotnet_diagnostic.IDE0059.severity = error
 dotnet_diagnostic.IDE0058.severity = none
 dotnet_diagnostic.IDE0048.severity = none
+dotnet_diagnostic.IDE0055.severity = none
 
 # Xml files
 [*.xml]

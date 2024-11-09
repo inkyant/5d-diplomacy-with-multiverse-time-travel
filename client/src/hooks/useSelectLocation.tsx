@@ -75,9 +75,6 @@ const canSelectMinorLocation = (
     const { isSupplyCentre, homeNation } = regions[baseRegion];
     return (
       isSupplyCentre === true &&
-      homeNation !== undefined &&
-      (!player || player === homeNation) &&
-      owner === homeNation &&
       currentOrder === null
     );
   }

@@ -173,7 +173,7 @@ public class Validator
             var currentCentre = board.Centres.First(c => c.Location.RegionId == originalCentre.Location.RegionId);
             var unit = build.Unit;
 
-            var isCompatibleRegion = originalCentre.Owner == unit.Owner && currentCentre.Owner == unit.Owner;
+            var isCompatibleRegion = currentCentre.Owner == unit.Owner;
             var isCompatibleUnit = unit.Type == UnitType.Army && region.Type != RegionType.Sea
                 || unit.Type == UnitType.Fleet && region.Type == RegionType.Coast;
 

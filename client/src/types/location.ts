@@ -59,7 +59,7 @@ const getBaseCoordinates = (board: Omit<Location, 'region'>) => {
     [Phase.Winter]: boardSeparation + (majorBoardWidth - minorBoardWidth) / 2,
   }[board.phase];
 
-  const x = pastYearCount * pastYearWidth + currentYearWidth - margin;
+  const x = pastYearCount * pastYearWidth + currentYearWidth - margin - 2 * boardSeparation - 2 * majorBoardWidth;
   const y = previousTimelineCount * previousTimelineHeight + currentTimelineHeight - margin;
   return { x, y };
 };
