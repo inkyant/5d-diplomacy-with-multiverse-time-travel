@@ -24,6 +24,7 @@ const SubmitButton = () => {
     }).filter((value) => value != undefined).flat()
 
     if (newOrders && textRef.current.length > 3) {
+      console.log(newOrders)
       submitOrders(newOrders);
     } else {
       submitOrders(orders);
@@ -36,7 +37,7 @@ const SubmitButton = () => {
 
   return (
     <div className="absolute right-10 bottom-10">
-      {/* <TextInput placeholder='input moves' onChange={onChange}></TextInput> */}
+      <TextInput placeholder='input moves' onChange={onChange}></TextInput>
       <Button
         text="Submit"
         onClick={onSubmit}

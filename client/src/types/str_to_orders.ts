@@ -66,8 +66,16 @@ export function parseOrder(orderString: string, country: string) {
     case 'S':
 
       const supportStr = orderString.split(" ").slice(5).join(" ")
-      const supportFrom = parseDestination(supportStr.split("->")[0], location)
-      const supportTo = parseDestination(supportStr.split("->")[1], location)
+      let supportFrom: Location
+      let supportTo: Location
+      if (supportStr.includes("->")) {
+        const moveParts = supportStr.split("->")
+        supportFrom = parseDestination(moveParts[0], location)
+        supportTo = parseDestination(moveParts[1], location)
+      } else {
+        supportFrom = parseDestination(supportStr.replace("H", "").trim(), location)
+        supportTo = supportFrom
+      }
 
       return parseSupport(unit, location, supportFrom, supportTo);
     case 'C':
