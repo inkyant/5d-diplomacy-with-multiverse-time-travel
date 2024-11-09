@@ -5,24 +5,33 @@ import { OrderEntryActionType } from '../../types/context/orderEntryAction';
 import WorldContext from '../context/WorldContext';
 import TextInput from './common/TextInput';
 import { parseOrder } from '../../types/str_to_orders';
-import Order from '../../types/order';
 
 const SubmitButton = () => {
   const { world, submitOrders, isLoading, error } = useContext(WorldContext);
   const { dispatch, orders } = useContext(OrderEntryContext);
-  const textRef = useRef<Order[] | null>(null)
+  const textRef = useRef<string>("")
 
   const onSubmit = () => {
     dispatch({ $type: OrderEntryActionType.Submit });
-    submitOrders(textRef.current ? textRef.current : orders);
+
+    const newOrders = textRef.current.split(";").map((str) => {
+      str = str.trim()
+      if (str.length < 2) return
+      const [country, country_orders] = [str.split(":")[0], str.split(":")[1]]
+      return country_orders.split(",").map((ord) => {
+        return parseOrder(ord, country)
+      }).filter((value) => value != undefined)
+    }).filter((value) => value != undefined).flat()
+
+    if (newOrders && textRef.current.length > 3) {
+      submitOrders(newOrders);
+    } else {
+      submitOrders(orders);
+    }
   };
 
   const onChange = (value: string) => {
-    const newOrders = value.split(";").map((str) => {
-      return parseOrder(str.split(":")[1], str.split(":")[0])
-    }).filter((value) => value != undefined)
-    if (newOrders)
-      textRef.current = newOrders
+    textRef.current = value
   }
 
   return (

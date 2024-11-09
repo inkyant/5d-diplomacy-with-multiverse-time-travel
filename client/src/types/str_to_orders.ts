@@ -6,17 +6,25 @@ import Order, { OrderStatus, OrderType } from './order';
 import Unit from './unit';
 import Nation from './enums/nation';
 
+
+// TODO: add support hold
+// TODO: Naples: T1 W01 D F Ion, T2 F01 F ION -> Nap; Rome: T1 W01 A Rom, T2 F01 F Rom H; Venice: T2 F01 A Ven S Rom -> Nap
 export function parseOrder(orderString: string, country: string) {
 
   const nation = Object.values(Nation).find(
     nation => nation.toLowerCase() === country.toLowerCase()
   );
 
-  if (!nation) return
+  if (!nation) {
+    console.error("Could not find nation", country)
+    return
+  }
+
   orderString = orderString.trim()
   const parts = orderString.split(' ');
 
-  if (parts.length < 5) {
+  if (parts.length < 4) {
+    console.error("too few order parameters provided for ", country, "'s order of ", orderString)
     return
   }
 
@@ -70,7 +78,8 @@ export function parseOrder(orderString: string, country: string) {
 
       return parseConvoy(unit, location, convoyFrom, convoyTo);
     default:
-      throw new Error('Invalid order type');
+      console.error("Invalid order type")
+      return
   }
 }
 
