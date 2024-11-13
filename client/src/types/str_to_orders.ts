@@ -7,9 +7,7 @@ import Unit from './unit';
 import Nation from './enums/nation';
 
 
-// TODO: add support hold
-// TODO: Naples: T1 W01 D F Ion, T2 F01 F ION -> Nap; Rome: T1 W01 A Rom, T2 F01 F Rom H; Venice: T2 F01 A Ven S Rom -> Nap
-export function parseOrder(orderString: string, country: string) {
+function parseOrder(orderString: string, country: string) {
 
   const nation = Object.values(Nation).find(
     nation => nation.toLowerCase() === country.toLowerCase()
@@ -73,7 +71,7 @@ export function parseOrder(orderString: string, country: string) {
         supportFrom = parseDestination(moveParts[0], location)
         supportTo = parseDestination(moveParts[1], location)
       } else {
-        supportFrom = parseDestination(supportStr.replace("H", "").trim(), location)
+        supportFrom = parseDestination(supportStr.replace(/\sH\s|\sH$/, '').trim(), location)
         supportTo = supportFrom
       }
 
