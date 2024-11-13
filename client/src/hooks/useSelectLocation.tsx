@@ -58,7 +58,7 @@ const canSelectMinorLocation = (
   currentOrder: Order | null,
   currentMode: InputMode,
   location: Location,
-  owner: Nation | undefined,
+  _owner: Nation | undefined,
   unit: Unit | undefined,
   isActiveBoard: boolean,
 ) => {
@@ -72,7 +72,7 @@ const canSelectMinorLocation = (
 
   if (!unitIncludingCoasts && (currentMode === InputMode.Build || currentMode === InputMode.None)) {
     const baseRegion = location.region.split('_')[0];
-    const { isSupplyCentre, homeNation } = regions[baseRegion];
+    const { isSupplyCentre, } = regions[baseRegion];
     return (
       isSupplyCentre === true &&
       currentOrder === null

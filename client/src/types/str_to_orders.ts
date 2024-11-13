@@ -233,13 +233,22 @@ export function orderToString(orders: Order[]) {
   return orderStr
 }
 
-export function stringToOrders(str: string) {
-  return str.split(";").map((str) => {
+export function stringToOrders(str: string): Order[] {
+
+  // have to do this because typescript was being weird and not recognizing filter()
+  let rtnOrders: Order[] = []
+
+  str.split(";").map((str) => {
     str = str.trim()
     if (str.length < 2) return
-    const [country, country_orders] = [str.split(":")[0], str.split(":")[1]]
-    return country_orders.split(",").map((ord) => {
+    const [country, countryOrdersStr] = [str.split(":")[0], str.split(":")[1]]
+
+    let countryOrders: Order[] = []
+    countryOrdersStr.split(",").map((ord) => {
       return parseOrder(ord, country)
-    }).filter((value) => value != undefined)
-  }).filter((value) => value != undefined).flat()
+    }).forEach(v => (v !== undefined) && countryOrders.push(v))
+    return countryOrders
+  }).flat().forEach(v => (v !== undefined) && rtnOrders.push(v))
+
+  return rtnOrders
 }

@@ -10,7 +10,6 @@ import OrderEntryState from '../types/context/orderEntryState';
 import UnitType from '../types/enums/unitType';
 import { compareLocations, getLocationKey } from '../types/location';
 import Phase from '../types/enums/phase';
-import regions from '../data/regions';
 import GameContext from '../components/context/GameContext';
 import WorldContext from '../components/context/WorldContext';
 
@@ -23,10 +22,10 @@ const handleAdjustmentOrderCreation = (
   const filteredOrders = state.orders.filter(
     (order) => !compareLocations(order.location, action.location, true),
   );
-  const nation = regions[location.region].homeNation;
+  // const nation = regions[location.region].homeNation;
 
   const isPlayerUnit = unit && (!player || unit.owner === player);
-  const isPlayerNation = nation && (!player || nation === player);
+  // const isPlayerNation = nation && (!player || nation === player);
 
   // Beginning a build order
   if (
