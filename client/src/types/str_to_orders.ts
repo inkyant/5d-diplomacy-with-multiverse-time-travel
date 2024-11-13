@@ -83,6 +83,8 @@ function parseOrder(orderString: string, country: string) {
       const convoyTo = parseDestination(convoyStr.split("->")[1], location)
 
       return parseConvoy(unit, location, convoyFrom, convoyTo);
+    case 'D':
+      return parseDisband(unit, location)
     default:
       console.error("Invalid order type")
       return
@@ -201,25 +203,25 @@ export function orderToString(orders: Order[]) {
     orderList.forEach(order => {
       orderStr += formatLocation(order.location) + " " + order.unit?.type[0] + " " + order.location.region
     
-      if (order.$type != OrderType.Build && order.$type != OrderType.Disband) {
-        if (order.$type == OrderType.Hold) {
+      if (order.$type == OrderType.Hold) {
+        orderStr += " H"
+      } else if (order.$type == OrderType.Move) {
+        if (order.destination == null) {
           orderStr += " H"
-        } else if (order.$type == OrderType.Move) {
-          if (order.destination == null) {
-            orderStr += " H"
-          } else {
-            orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
-          }
-        } else if (order.$type == OrderType.Support) {
-          orderStr += " S " + formatLocation(order.supportLocation) + " " + order.supportLocation?.region
-          if (order.destination == null || JSON.stringify(order.supportLocation) == JSON.stringify(order.destination)) {
-            orderStr += " H"
-          } else {
-            orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
-          }
-        } else if (order.$type == OrderType.Convoy) {
-          orderStr += " C " + formatLocation(order.convoyLocation) + " " + order.convoyLocation?.region + " -> " + formatLocation(order.destination) + " " + order.destination?.region
+        } else {
+          orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
         }
+      } else if (order.$type == OrderType.Support) {
+        orderStr += " S " + formatLocation(order.supportLocation) + " " + order.supportLocation?.region
+        if (order.destination == null || JSON.stringify(order.supportLocation) == JSON.stringify(order.destination)) {
+          orderStr += " H"
+        } else {
+          orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
+        }
+      } else if (order.$type == OrderType.Convoy) {
+        orderStr += " C " + formatLocation(order.convoyLocation) + " " + order.convoyLocation?.region + " -> " + formatLocation(order.destination) + " " + order.destination?.region
+      } else if (order.$type == OrderType.Disband) {
+        orderStr += " D"
       }
 
       orderStr += ", "
