@@ -174,3 +174,70 @@ function parseDisband(unit: Unit, location: Location): Order {
     location: location
   };
 }
+
+
+export function orderToString(orders: Order[]) {
+  const grouped = orders.reduce<{ [key: string]: Order[] }>((acc, order) => {
+    if (order.unit?.owner) {
+      if (!acc[order.unit?.owner]) {
+        acc[order.unit?.owner] = [];
+      }
+      acc[order.unit?.owner].push(order)
+    }
+    return acc
+  }, {});
+
+  let orderStr = ""
+
+  const formatLocation = (loc: Location | null) => {
+    if (!loc) return ""
+    return "T" + loc.timeline + " " + loc.phase[0] + ('0' + (loc.year - 1900)).slice(-2)
+  }
+
+  Object.values(grouped).forEach(orderList => {
+
+    orderStr += orderList[0].unit?.owner + ": "
+
+    orderList.forEach(order => {
+      orderStr += formatLocation(order.location) + " " + order.unit?.type[0] + " " + order.location.region
+    
+      if (order.$type != OrderType.Build && order.$type != OrderType.Disband) {
+        if (order.$type == OrderType.Hold) {
+          orderStr += " H"
+        } else if (order.$type == OrderType.Move) {
+          if (order.destination == null) {
+            orderStr += " H"
+          } else {
+            orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
+          }
+        } else if (order.$type == OrderType.Support) {
+          orderStr += " S " + formatLocation(order.supportLocation) + " " + order.supportLocation?.region
+          if (order.destination == null || JSON.stringify(order.supportLocation) == JSON.stringify(order.destination)) {
+            orderStr += " H"
+          } else {
+            orderStr += " -> " + formatLocation(order.destination) + " " + order.destination.region
+          }
+        } else if (order.$type == OrderType.Convoy) {
+          orderStr += " C " + formatLocation(order.convoyLocation) + " " + order.convoyLocation?.region + " -> " + formatLocation(order.destination) + " " + order.destination?.region
+        }
+      }
+
+      orderStr += ", "
+    })
+
+    orderStr = orderStr.slice(0, -2) + "; "
+
+  })
+  return orderStr
+}
+
+export function stringToOrders(str: string) {
+  return str.split(";").map((str) => {
+    str = str.trim()
+    if (str.length < 2) return
+    const [country, country_orders] = [str.split(":")[0], str.split(":")[1]]
+    return country_orders.split(",").map((ord) => {
+      return parseOrder(ord, country)
+    }).filter((value) => value != undefined)
+  }).filter((value) => value != undefined).flat()
+}
